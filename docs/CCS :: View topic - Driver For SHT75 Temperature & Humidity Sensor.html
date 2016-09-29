@@ -1,0 +1,3466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<link rel="top" href="http://www.ccsinfo.com/forum/index.php" title="CCS Forum Index">
+<link rel="search" href="http://www.ccsinfo.com/forum/search.php" title="Search">
+<link rel="help" href="http://www.ccsinfo.com/forum/faq.php" title="FAQ">
+<link rel="author" href="http://www.ccsinfo.com/forum/memberlist.php" title="Memberlist">
+<link rel="prev" href="http://www.ccsinfo.com/forum/viewtopic.php?t=28564&amp;view=previous" title="View previous topic">
+<link rel="next" href="http://www.ccsinfo.com/forum/viewtopic.php?t=28564&amp;view=next" title="View next topic">
+<link rel="up" href="http://www.ccsinfo.com/forum/viewforum.php?f=2" title="Code Library">
+<link rel="chapter forum" href="http://www.ccsinfo.com/forum/viewforum.php?f=1" title="General CCS C Discussion">
+<link rel="chapter forum" href="http://www.ccsinfo.com/forum/viewforum.php?f=2" title="Code Library">
+<link rel="chapter forum" href="http://www.ccsinfo.com/forum/viewforum.php?f=5" title="EZ App Lynx">
+<link rel="chapter forum" href="http://www.ccsinfo.com/forum/viewforum.php?f=3" title="CCS ICD / Mach X / Load-n-Go">
+
+<title>CCS :: View topic - Driver For SHT75 Temperature &amp; Humidity Sensor</title>
+<!-- link rel="stylesheet" href="templates/subSilver/subSilver.css" type="text/css" -->
+<style type="text/css">
+<!--
+/*
+  The original subSilver Theme for phpBB version 2+
+  Created by subBlue design
+  http://www.subBlue.com
+
+  NOTE: These CSS definitions are stored within the main page body so that you can use the phpBB2
+  theme administration centre. When you have finalised your style you could cut the final CSS code
+  and place it in an external file, deleting this section to save bandwidth.
+*/
+
+/* General page style. The scroll bar colours only visible in IE5.5+ */
+body {
+	background-color: #E5E5E5;
+	scrollbar-face-color: #DEE3E7;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #DEE3E7;
+	scrollbar-3dlight-color: #D1D7DC;
+	scrollbar-arrow-color:  #006699;
+	scrollbar-track-color: #EFEFEF;
+	scrollbar-darkshadow-color: #98AAB1;
+}
+
+/* General font families for common tags */
+font,th,td,p { font-family: Verdana, Arial, Helvetica, sans-serif }
+a:link,a:active,a:visited { color : #006699; }
+a:hover		{ text-decoration: underline; color : #DD6900; }
+hr	{ height: 0px; border: solid #D1D7DC 0px; border-top-width: 1px;}
+
+/* This is the border line & background colour round the entire page */
+.bodyline	{ background-color: #FFFFFF; border: 1px #98AAB1 solid; }
+
+/* This is the outline round the main forum tables */
+.forumline	{ background-color: #FFFFFF; border: 2px #006699 solid; }
+
+/* Main table cell colours and backgrounds */
+td.row1	{ background-color: #EFEFEF; }
+td.row2	{ background-color: #DEE3E7; }
+td.row3	{ background-color: #D1D7DC; }
+
+/*
+  This is for the table cell above the Topics, Post & Last posts on the index.php page
+  By default this is the fading out gradiated silver background.
+  However, you could replace this with a bitmap specific for each forum
+*/
+td.rowpic {
+		background-color: #FFFFFF;
+		background-image: url(templates/subSilver/images/cellpic2.jpg);
+		background-repeat: repeat-y;
+}
+
+/* Header cells - the blue and silver gradient backgrounds */
+th	{
+	color: #FFA34F; font-size: 11px; font-weight : bold;
+	background-color: #006699; height: 25px;
+	background-image: url(templates/subSilver/images/cellpic3.gif);
+}
+
+td.cat,td.catHead,td.catSides,td.catLeft,td.catRight,td.catBottom {
+			background-image: url(templates/subSilver/images/cellpic1.gif);
+			background-color:#D1D7DC; border: #FFFFFF; border-style: solid; height: 28px;
+}
+
+/*
+  Setting additional nice inner borders for the main table cells.
+  The names indicate which sides the border will be on.
+  Don't worry if you don't understand this, just ignore it :-)
+*/
+td.cat,td.catHead,td.catBottom {
+	height: 29px;
+	border-width: 0px 0px 0px 0px;
+}
+th.thHead,th.thSides,th.thTop,th.thLeft,th.thRight,th.thBottom,th.thCornerL,th.thCornerR {
+	font-weight: bold; border: #FFFFFF; border-style: solid; height: 28px;
+}
+td.row3Right,td.spaceRow {
+	background-color: #D1D7DC; border: #FFFFFF; border-style: solid;
+}
+
+th.thHead,td.catHead { font-size: 12px; border-width: 1px 1px 0px 1px; }
+th.thSides,td.catSides,td.spaceRow	 { border-width: 0px 1px 0px 1px; }
+th.thRight,td.catRight,td.row3Right	 { border-width: 0px 1px 0px 0px; }
+th.thLeft,td.catLeft	  { border-width: 0px 0px 0px 1px; }
+th.thBottom,td.catBottom  { border-width: 0px 1px 1px 1px; }
+th.thTop	 { border-width: 1px 0px 0px 0px; }
+th.thCornerL { border-width: 1px 0px 0px 1px; }
+th.thCornerR { border-width: 1px 1px 0px 0px; }
+
+/* The largest text used in the index page title and toptic title etc. */
+.maintitle	{
+	font-weight: bold; font-size: 22px; font-family: "Trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
+	text-decoration: none; line-height : 120%; color : #000000;
+}
+
+/* General text */
+.gen { font-size : 12px; }
+.genmed { font-size : 11px; }
+.gensmall { font-size : 10px; }
+.gen,.genmed,.gensmall { color : #000000; }
+a.gen,a.genmed,a.gensmall { color: #006699; text-decoration: none; }
+a.gen:hover,a.genmed:hover,a.gensmall:hover	{ color: #DD6900; text-decoration: underline; }
+
+/* The register, login, search etc links at the top of the page */
+.mainmenu		{ font-size : 11px; color : #000000 }
+a.mainmenu		{ text-decoration: none; color : #006699;  }
+a.mainmenu:hover{ text-decoration: underline; color : #DD6900; }
+
+/* Forum category titles */
+.cattitle		{ font-weight: bold; font-size: 12px ; letter-spacing: 1px; color : #006699}
+a.cattitle		{ text-decoration: none; color : #006699; }
+a.cattitle:hover{ text-decoration: underline; }
+
+/* Forum title: Text and link to the forums used in: index.php */
+.forumlink		{ font-weight: bold; font-size: 12px; color : #006699; }
+a.forumlink 	{ text-decoration: none; color : #006699; }
+a.forumlink:hover{ text-decoration: underline; color : #DD6900; }
+
+/* Used for the navigation text, (Page 1,2,3 etc) and the navigation bar when in a forum */
+.nav			{ font-weight: bold; font-size: 11px; color : #000000;}
+a.nav			{ text-decoration: none; color : #006699; }
+a.nav:hover		{ text-decoration: underline; }
+
+/* titles for the topics: could specify viewed link colour too */
+.topictitle,h1,h2	{ font-weight: bold; font-size: 11px; color : #000000; }
+a.topictitle   { text-decoration: none; color : #006699; }
+/* a:link.topictitle   { text-decoration: none; color : #006699; } */
+a:visited.topictitle { text-decoration: none; color : #5493B4; }
+a:hover.topictitle { text-decoration: underline; color : #DD6900; }
+
+/* Name of poster in viewmsg.php and viewtopic.php and other places */
+.name			{ font-size : 11px; color : #000000;}
+
+/* Location, number of posts, post date etc */
+.postdetails		{ font-size : 10px; color : #000000; }
+.postdetailsbold	{ font-size : 11px; color : #000000; font-weight: bold;}
+
+/* The content of the posts (body of text) */
+.postbody { font-size : 12px; line-height: 18px}
+a.postlink:link	{ text-decoration: none; color : #006699 }
+a.postlink:visited { text-decoration: none; color : #5493B4; }
+a.postlink:hover { text-decoration: underline; color : #DD6900}
+
+/* Quote & Code blocks */
+.code {
+	font-family: Courier, 'Courier New', sans-serif; font-size: 11px; color: #006600;
+	background-color: #FAFAFA; border: #D1D7DC; border-style: solid;
+	border-left-width: 1px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px
+}
+
+.quote {
+	font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #444444; line-height: 125%;
+	background-color: #FAFAFA; border: #D1D7DC; border-style: solid;
+	border-left-width: 1px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px
+}
+
+.mod {
+	font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #000000; line-height: 125%;
+}
+
+.exclamation {
+	font-weight: bold; font-family: Times New Roman, Verdana; font-size : 45px; color: #ffffff;
+}
+
+td.ModTable { background-color: #ff6060; }
+
+/* Copyright and bottom info */
+.copyright		{ font-size: 10px; font-family: Verdana, Arial, Helvetica, sans-serif; color: #444444; letter-spacing: -1px;}
+a.copyright		{ color: #444444; text-decoration: none;}
+a.copyright:hover { color: #000000; text-decoration: underline;}
+
+/* Form elements */
+input,textarea, select {
+	color : #000000;
+	font: normal 11px Verdana, Arial, Helvetica, sans-serif;
+	border-color : #000000;
+}
+
+/* The text input fields background colour */
+input.post, textarea.post, select {
+	background-color : #FFFFFF;
+}
+
+input { text-indent : 2px; }
+
+/* The buttons used for bbCode styling in message post */
+input.button {
+	background-color : #EFEFEF;
+	color : #000000;
+	font-size: 11px; font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+/* The main submit button option */
+input.mainoption {
+	background-color : #FAFAFA;
+	font-weight : bold;
+}
+
+/* None-bold submit button */
+input.liteoption {
+	background-color : #FAFAFA;
+	font-weight : normal;
+}
+
+/* This is the line in the posting page which shows the rollover
+  help line. This is actually a text box, but if set to be the same
+  colour as the background no one will know ;)
+*/
+.helpline { background-color: #DEE3E7; border-style: none; }
+
+/* Import the fancy styles for IE only (NS4.x doesn't use the @import function) */
+@import url("templates/subSilver/formIE.css");
+-->
+</style>
+<script language="Javascript" type="text/javascript">
+<!--
+function setCheckboxes(theForm, elementName, isChecked)
+{
+    var chkboxes = document.forms[theForm].elements[elementName];
+    var count = chkboxes.length;
+
+    if (count)
+	{
+        for (var i = 0; i < count; i++)
+		{
+            chkboxes[i].checked = isChecked;
+    	}
+    }
+	else
+	{
+    	chkboxes.checked = isChecked;
+    }
+
+    return true;
+}
+//-->
+</script>
+</head>
+<body bgcolor="#E5E5E5" text="#000000" link="#006699" vlink="#5493B4">
+<a name="top"></a>
+
+<table border="0" cellpadding="10" cellspacing="0" align="center" width="100%">
+	<tbody><tr>
+		<td class="bodyline">
+
+
+	<table style="width: 100%;">
+	<tbody><tr>
+	<td style="text-align: left;"><a href="http://www.ccsinfo.com/"><img style="border: none;" src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/CCSLogo.jpg"></a></td>
+	<td style="text-align: right;"><a href="http://www.ccsinfo.com/fsmo"><img style="border: none;" src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/forumAd.jpg" alt="CCS C Software and Maintenance Offers"></a></td>
+		</tr>
+	</tbody></table>
+<table style="margin-top: 20px;" border="0" cellpadding="10" cellspacing="0" align="center" width="100%">
+<tbody><tr>
+<td style="vertical-align: top;">
+<span class="mainmenu">
+<a href="http://www.ccsinfo.com/faq" class="mainmenu"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_mini_faq.gif" alt="FAQ" border="0" height="13" hspace="3" width="12">FAQ</a>&nbsp; &nbsp;<a href="http://www.ccsinfo.com/forum/faq.php" class="mainmenu"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_mini_faq.gif" alt="FAQ" border="0" height="13" hspace="3" width="12">Forum Help</a>&nbsp; &nbsp;<a href="http://www.ccsinfo.com/support" class="mainmenu"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_mini_faq.gif" alt="FAQ" border="0" height="13" hspace="3" width="12">Official CCS Support</a>&nbsp; &nbsp;<a href="http://www.ccsinfo.com/forum/search.php" class="mainmenu"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_mini_search.gif" alt="Search" border="0" height="13" hspace="3" width="12">Search</a>
+&nbsp;<a href="http://www.ccsinfo.com/forum/profile.php?mode=register" class="mainmenu"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_mini_register.gif" alt="Register" border="0" height="13" hspace="3" width="12">Register</a>&nbsp;
+<p>
+<a href="http://www.ccsinfo.com/forum/profile.php?mode=editprofile" class="mainmenu"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_mini_profile.gif" alt="Profile" border="0" height="13" hspace="3" width="12">Profile</a>&nbsp; &nbsp;<a href="http://www.ccsinfo.com/forum/privmsg.php?folder=inbox" class="mainmenu"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_mini_message.gif" alt="Log in to check your private messages" border="0" height="13" hspace="3" width="12">Log in to check your private messages</a>&nbsp; &nbsp;<a href="http://www.ccsinfo.com/forum/login.php" class="mainmenu"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_mini_login.gif" alt="Log in" border="0" height="13" hspace="3" width="12">Log in</a>&nbsp;
+</p></span></td>
+<td style="width: 400px; vertical-align: top; border: solid 2px #069; padding: 0;">
+<p style="font-size: 10px; margin: 0; padding: 5px; border-bottom: dashed 1px #069;">CCS does not monitor this forum on a regular basis.</p>
+<p style="font-size: 10px; margin: 0; padding: 5px;">Please do not post bug Reports on this forum.  Send them to <a href="mailto:support@ccsinfo.com">support@ccsinfo.com</a></p>
+</td>
+</tr>
+</tbody></table>
+
+<table border="0" cellpadding="2" cellspacing="2" width="100%">
+  <tbody><tr>
+	<td colspan="2" align="left" valign="bottom"><a class="maintitle" href="http://www.ccsinfo.com/forum/viewtopic.php?t=28564&amp;start=0&amp;postdays=0&amp;postorder=asc&amp;highlight=sht11">Driver For SHT75 Temperature &amp; Humidity Sensor</a><br>
+	  <span class="gensmall"><b>Goto page <b>1</b>, <a href="http://www.ccsinfo.com/forum/viewtopic.php?t=28564&amp;postdays=0&amp;postorder=asc&amp;highlight=sht11&amp;start=15">2</a>, <a href="http://www.ccsinfo.com/forum/viewtopic.php?t=28564&amp;postdays=0&amp;postorder=asc&amp;highlight=sht11&amp;start=30">3</a>&nbsp;&nbsp;<a href="http://www.ccsinfo.com/forum/viewtopic.php?t=28564&amp;postdays=0&amp;postorder=asc&amp;highlight=sht11&amp;start=15">Next</a></b><br>
+	  &nbsp; </span></td>
+  </tr>
+</tbody></table>
+
+<table border="0" cellpadding="2" cellspacing="2" width="100%">
+  <tbody><tr>
+	<td align="left" nowrap="nowrap" valign="bottom"><span class="nav"><a href="http://www.ccsinfo.com/forum/posting.php?mode=newtopic&amp;f=2"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/post.gif" alt="Post new topic" border="0" align="middle"></a>&nbsp;&nbsp;&nbsp;<a href="http://www.ccsinfo.com/forum/posting.php?mode=reply&amp;t=28564"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/reply.gif" alt="Reply to topic" border="0" align="middle"></a></span></td>
+	<td align="left" valign="middle" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="http://www.ccsinfo.com/forum/index.php" class="nav">CCS Forum Index</a>
+	  -&gt; <a href="http://www.ccsinfo.com/forum/viewforum.php?f=2" class="nav">Code Library</a></span></td>
+  </tr>
+</tbody></table>
+
+<table class="forumline" border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tbody><tr align="right">
+		<td class="catHead" colspan="2" height="28"><span class="nav"><a href="http://www.ccsinfo.com/forum/viewtopic.php?t=28564&amp;view=previous" class="nav">View previous topic</a> :: <a href="http://www.ccsinfo.com/forum/viewtopic.php?t=28564&amp;view=next" class="nav">View next topic</a> &nbsp;</span></td>
+	</tr>
+	
+	<tr>
+		<th class="thLeft" height="26" nowrap="nowrap" width="150">Author</th>
+		<th class="thRight" nowrap="nowrap">Message</th>
+	</tr>
+	<tr>
+		<td class="row1" align="left" valign="top" width="150">
+			<span class="name"><a name="70935"></a><b>hansolo</b></span><br><span class="postdetails"><br><br><br>Joined: 06 Oct 2006<br>Posts: 20<br></span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=5204"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=5204"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row1" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: -->Driver For SHT75 Temperature &amp; Humidity Sensor</span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=70935#70935"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Tue Oct 17, 2006 5:41 pm<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=70935"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">This driver should also work for <b style="color:#FFA34F">SHT11</b>, SHT71 and SHT15 as these sensors are using the same communication protocol. 
+<br>
+
+<br>
+I had tested these codes with PIC16F877A but should work with other PICs as well because I used delay in the driver codes.
+<br>
+
+<br>
+<span style="font-weight: bold">If you find any bugs or inaccuracy of reading, please PM me.</span>
+<br>
+
+<br>
+<span style="font-weight: bold">SHT75.C Driver</span>
+<br>
+</span><table border="0" cellpadding="3" cellspacing="1" align="center" width="90%"><tbody><tr> 	  <td><span class="genmed"><b>Code:</b></span></td>	</tr>	<tr>	  <td class="code">///////////////////////////////////////////////////////////////////////////////
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Driver file for SHT75 Temperature &amp; Humidity Sensor&nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// ***** To initialise SHT75 sensor upon power up *****&nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Function : sht_init()&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Return&nbsp; &nbsp;: none&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// ***** To measure and caluculate SHT75 temp &amp; real RH *****&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Function : sht_rd (temp, truehumid)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Return&nbsp; &nbsp;: temperature &amp; true humidity in float 
+values&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; //
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+///////////////////////////////////////////////////////////////////////////////
+<br>
+
+<br>
+#define sht_data_pin&nbsp; &nbsp;PIN_D3
+<br>
+#define sht_clk_pin&nbsp; &nbsp; PIN_C4
+<br>
+
+<br>
+
+<br>
+//***** Function to alert SHT75 *****
+<br>
+
+<br>
+void comstart (void)
+<br>
+{
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; //data high
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_data_pin, 0); //data low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;delay_us(2);
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; //data high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to write data to SHT75 *****
+<br>
+
+<br>
+int1 comwrite (int8 iobyte)
+<br>
+{
+<br>
+&nbsp;int8 i, mask = 0x80;
+<br>
+&nbsp;int1 ack;
+<br>
+
+<br>
+&nbsp;//Shift out command
+<br>
+&nbsp;delay_us(4);
+<br>
+&nbsp;for(i=0; i&lt;8; i++)
+<br>
+&nbsp; {
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 0);&nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk low
+<br>
+&nbsp; &nbsp;if((iobyte &amp; mask) &gt; 0) output_float(sht_data_pin);&nbsp; //data high if MSB high
+<br>
+&nbsp; &nbsp;else output_bit(sht_data_pin, 0);&nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //data low if MSB low
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 1);&nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk 
+high
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; &nbsp;mask = mask &gt;&gt; 1;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; //shift to next bit
+<br>
+&nbsp; }
+<br>
+
+<br>
+&nbsp;//Shift in ack
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;ack = input(sht_data_pin);&nbsp; &nbsp;//get ack bit
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;return(ack);
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to read data from SHT75 *****
+<br>
+
+<br>
+int16 comread (void)
+<br>
+{
+<br>
+&nbsp;int8 i;
+<br>
+&nbsp;int16 iobyte = 0;
+<br>
+&nbsp;const int16 mask0 = 0x0000;
+<br>
+&nbsp;const int16 mask1 = 0x0001;
+<br>
+
+<br>
+&nbsp;//shift in MSB data
+<br>
+&nbsp;for(i=0; i&lt;8; i++)
+<br>
+&nbsp; {
+<br>
+&nbsp; &nbsp;iobyte = iobyte &lt;&lt; 1;
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 1);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk high
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; &nbsp;if (input(sht_data_pin)) iobyte |= mask1;&nbsp; //shift in data bit
+<br>
+&nbsp; &nbsp;else iobyte |= mask0;
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 0);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk low
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; }
+<br>
+
+<br>
+&nbsp;//send ack 0 bit
+<br>
+&nbsp;output_bit(sht_data_pin, 0); //data low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(2);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; //data high
+<br>
+
+<br>
+&nbsp;//shift in LSB data
+<br>
+&nbsp;for(i=0; i&lt;8; i++)
+<br>
+&nbsp; {
+<br>
+&nbsp; &nbsp;iobyte = iobyte &lt;&lt; 1;
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 1);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk high
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; &nbsp;if (input(sht_data_pin)) iobyte |= mask1;&nbsp; //shift in data bit
+<br>
+&nbsp; &nbsp;else iobyte |= mask0;
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 0);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk low
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; }
+<br>
+
+<br>
+&nbsp;//send ack 1 bit
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; //data high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(2);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+
+<br>
+&nbsp;return(iobyte);
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to wait for SHT75 reading *****
+<br>
+
+<br>
+void comwait (void)
+<br>
+{
+<br>
+&nbsp;int16 sht_delay;
+<br>
+
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//data high
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//clk low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;for(sht_delay=0; sht_delay&lt;30000; sht_delay++)&nbsp; // wait for max 300ms
+<br>
+&nbsp; {
+<br>
+&nbsp; &nbsp;if (!input(sht_data_pin)) break;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //if sht_data_pin low, SHT75 ready
+<br>
+&nbsp; &nbsp;delay_us(10);
+<br>
+&nbsp; }
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to reset SHT75 communication *****
+<br>
+
+<br>
+void comreset (void)
+<br>
+{
+<br>
+&nbsp;int8 i;
+<br>
+
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; &nbsp; //data high
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; &nbsp; //clk low
+<br>
+&nbsp;delay_us(2);
+<br>
+&nbsp;for(i=0; i&lt;9; i++)
+<br>
+&nbsp; {
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 1);&nbsp; //toggle clk 9 times
+<br>
+&nbsp; &nbsp;delay_us(2);
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 0);
+<br>
+&nbsp; &nbsp;delay_us(2);
+<br>
+&nbsp;}
+<br>
+&nbsp;comstart();
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to soft reset SHT75 *****
+<br>
+
+<br>
+void sht_soft_reset (void)
+<br>
+{
+<br>
+&nbsp;comreset();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//SHT75 communication reset
+<br>
+&nbsp;comwrite(0x1e);&nbsp; &nbsp; &nbsp; &nbsp;//send SHT75 reset command
+<br>
+&nbsp;delay_ms(15);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//pause 15 ms
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to measure SHT75 temperature *****
+<br>
+
+<br>
+int16 measuretemp (void)
+<br>
+{
+<br>
+&nbsp;int1 ack;
+<br>
+&nbsp;int16 iobyte;
+<br>
+
+<br>
+&nbsp;comstart();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//alert SHT75
+<br>
+&nbsp;ack = comwrite(0x03);&nbsp; &nbsp;//send measure temp command and read ack status
+<br>
+&nbsp;if(ack == 1) return;
+<br>
+&nbsp;comwait();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //wait for SHT75 measurement to complete
+<br>
+&nbsp;iobyte = comread();&nbsp; &nbsp; &nbsp;//read SHT75 temp data
+<br>
+&nbsp;return(iobyte);
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to measure SHT75 RH *****
+<br>
+
+<br>
+int16 measurehumid (void)
+<br>
+{
+<br>
+&nbsp;int1 ack;
+<br>
+&nbsp;int16 iobyte;
+<br>
+
+<br>
+&nbsp;comstart();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //alert SHT75
+<br>
+&nbsp;ack = comwrite(0x05);&nbsp; //send measure RH command and read ack status
+<br>
+&nbsp;if(ack == 1) return;
+<br>
+&nbsp;comwait();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//wait for SHT75 measurement to complete
+<br>
+&nbsp;iobyte = comread();&nbsp; &nbsp; //read SHT75 temp data
+<br>
+&nbsp;return(iobyte);
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to calculate SHT75 temp &amp; RH *****
+<br>
+
+<br>
+void calculate_data (int16 temp, int16 humid, float &amp; tc, float &amp; rhlin, float &amp; rhtrue)
+<br>
+{
+<br>
+&nbsp;float truehumid1, rh;
+<br>
+
+<br>
+&nbsp;//calculate temperature reading
+<br>
+&nbsp;tc = ((float) temp * 0.01) - 40.0;
+<br>
+
+<br>
+&nbsp;//calculate Real RH reading
+<br>
+&nbsp;rh = (float) humid;
+<br>
+
+<br>
+&nbsp;rhlin = (rh * 0.0405) - (rh * rh * 0.0000028) - 4.0;
+<br>
+
+<br>
+&nbsp;//calculate True RH reading
+<br>
+&nbsp;rhtrue = ((tc - 25.0) * (0.01 + (0.00008 * rh))) + rhlin;
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to measure &amp; calculate SHT75 temp &amp; RH *****
+<br>
+
+<br>
+void sht_rd (float &amp; temp, float &amp; truehumid)
+<br>
+{
+<br>
+&nbsp;int16 restemp, reshumid;
+<br>
+&nbsp;float realhumid;
+<br>
+&nbsp;restemp = 0; truehumid = 0;
+<br>
+
+<br>
+&nbsp;restemp = measuretemp();&nbsp; &nbsp; //measure temp
+<br>
+&nbsp;reshumid = measurehumid();&nbsp; //measure RH
+<br>
+calculate_data (restemp, reshumid, temp, realhumid, truehumid);&nbsp; //calculate temp &amp; RH
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to initialise SHT75 on power-up *****
+<br>
+
+<br>
+void sht_init (void)
+<br>
+{
+<br>
+&nbsp;comreset();&nbsp; &nbsp; //reset SHT75
+<br>
+&nbsp;delay_ms(20);&nbsp; //delay for power-up
+<br>
+}</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+
+<br>
+<span style="font-weight: bold">The Main Program</span>
+<br>
+</span><table border="0" cellpadding="3" cellspacing="1" align="center" width="90%"><tbody><tr> 	  <td><span class="genmed"><b>Code:</b></span></td>	</tr>	<tr>	  <td class="code">#include &lt;16F877A.h&gt;
+<br>
+#fuses HS,NOWDT,PUT,NOPROTECT,NOLVP
+<br>
+#use delay(clock=20000000)
+<br>
+
+<br>
+#include&lt;lcd.c&gt;
+<br>
+#include&lt;sht75.c&gt;
+<br>
+
+<br>
+void main()
+<br>
+{
+<br>
+&nbsp;float restemp, truehumid;
+<br>
+&nbsp;lcd_init();
+<br>
+&nbsp;sht_init();
+<br>
+
+<br>
+&nbsp;while(1)
+<br>
+&nbsp;{
+<br>
+&nbsp; sht_rd (restemp, truehumid);
+<br>
+&nbsp; lcd_gotoxy(1,1);
+<br>
+&nbsp; printf(lcd_putc, "Temp : %3.1f %cC&nbsp; &nbsp;", restemp, 223);
+<br>
+&nbsp; printf(lcd_putc, "\nRH&nbsp; &nbsp;: %3.1f %%&nbsp; &nbsp;", truehumid);
+<br>
+&nbsp; delay_ms(500);&nbsp; &nbsp; &nbsp; &nbsp; //delay 500 ms between reading to prevent self heating of sensor
+<br>
+&nbsp;}
+<br>
+}</td>	</tr></tbody></table><span class="postbody"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row1" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row1" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=5204"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=5204"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" align="left" valign="top" width="150">
+			<span class="name"><a name="72477"></a><b>huichoman</b></span><br><span class="postdetails"><br><br><br>Joined: 20 Nov 2006<br>Posts: 2<br></span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=5639"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=5639"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row2" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: -->Thank you very much</span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=72477#72477"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Mon Nov 20, 2006 1:42 am<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=72477"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">I proved the routine with a sht71. At the moment it works perfectly. If I find some error I send a PM to you.
+<br>
+
+<br>
+Greetings from Mexico</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row2" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row2" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=5639"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=5639"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" align="left" valign="top" width="150">
+			<span class="name"><a name="72578"></a><b>hansolo</b></span><br><span class="postdetails"><br><br><br>Joined: 06 Oct 2006<br>Posts: 20<br></span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=5204"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=5204"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row1" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: -->Re: Thank you very much</span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=72578#72578"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Wed Nov 22, 2006 5:17 pm<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=72578"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody"></span><table border="0" cellpadding="3" cellspacing="1" align="center" width="90%"><tbody><tr> 	  <td><span class="genmed"><b>huichoman wrote:</b></span></td>	</tr>	<tr>	  <td class="quote">I proved the routine with a sht71. At the moment it works perfectly. If I find some error I send a PM to you.
+<br>
+
+<br>
+Greetings from Mexico</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+Thanks for your feedback.</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row1" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row1" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=5204"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=5204"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" align="left" valign="top" width="150">
+			<span class="name"><a name="80760"></a><b>w_arm</b></span><br><span class="postdetails"><br><br><br>Joined: 10 Apr 2007<br>Posts: 4<br>Location: Desenvolvedor</span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=7068"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=7068"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row2" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: -->The obtained reading is larger than to real.</span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=80760#80760"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Thu May 10, 2007 11:05 am<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=80760"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">I am using the sht75. The obtained reading is larger than to real (it differentiates of 4 degrees).</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row2" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row2" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=7068"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=7068"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" align="left" valign="top" width="150">
+			<span class="name"><a name="80975"></a><b>hansolo</b></span><br><span class="postdetails"><br><br><br>Joined: 06 Oct 2006<br>Posts: 20<br></span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=5204"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=5204"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row1" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: --></span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=80975#80975"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Wed May 16, 2007 5:51 pm<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=80975"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">How do you confirm this? Did you compare the reading with a calibrated thermo-hygrometer?
+<br>
+
+<br>
+Hansolo</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row1" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row1" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=5204"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=5204"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" align="left" valign="top" width="150">
+			<span class="name"><a name="81392"></a><b>sonicdeejay</b></span><br><span class="postdetails"><br><br><br>Joined: 20 Dec 2005<br>Posts: 112<br></span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=3438"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=3438"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row2" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: --></span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=81392#81392"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Sun May 27, 2007 12:50 am<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=81392"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">It is working.....I use PIC18F2525 and SHT71(look out for page 2 and 8 out this <a href="http://sg.farnell.com/jsp/search/browse.jsp;jsessionid=L0LAMMUOILUSLQFIBYCLYFQ?N=0&amp;Ntk=gensearch_001&amp;Ntt=sht71&amp;Ntx=&amp;_requestid=125153" target="_blank" class="postlink">datasheet</a> for connection)
+<br>
+
+<br>
+ 
+<br>
+Main
+<br>
+</span><table border="0" cellpadding="3" cellspacing="1" align="center" width="90%"><tbody><tr> 	  <td><span class="genmed"><b>Code:</b></span></td>	</tr>	<tr>	  <td class="code">#include &lt;18F2525.h&gt;
+<br>
+
+<br>
+#fuses HS,NOWDT,PUT,NOPROTECT,NOLVP
+<br>
+#use delay(clock=20000000)
+<br>
+
+<br>
+#include&lt;lcdmod.c&gt;
+<br>
+#include&lt;sht75.c&gt;
+<br>
+#byte PORTB = 0xf81
+<br>
+#byte PORTC = 0xf82
+<br>
+
+<br>
+void main()
+<br>
+{
+<br>
+&nbsp;float restemp, truehumid;
+<br>
+&nbsp;lcd_init();
+<br>
+&nbsp;sht_init();
+<br>
+
+<br>
+&nbsp;while(1)
+<br>
+&nbsp;{
+<br>
+&nbsp; sht_rd (restemp, truehumid);
+<br>
+&nbsp; lcd_gotoxy(1,1);
+<br>
+&nbsp; printf(lcd_putc, "Temp : %3.1f %cC&nbsp; &nbsp;", restemp, 223);
+<br>
+&nbsp; printf(lcd_putc, "\nRH&nbsp; &nbsp;: %3.1f %%&nbsp; &nbsp;", truehumid);
+<br>
+&nbsp; delay_ms(500);&nbsp; &nbsp; &nbsp; &nbsp; //delay 500 ms between reading to prevent self heating of sensor
+<br>
+&nbsp;}
+<br>
+}
+<br>
+</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+SHT75.C
+<br>
+</span><table border="0" cellpadding="3" cellspacing="1" align="center" width="90%"><tbody><tr> 	  <td><span class="genmed"><b>Code:</b></span></td>	</tr>	<tr>	  <td class="code">///////////////////////////////////////////////////////////////////////////////
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Driver file for SHT75 Temperature &amp; Humidity Sensor&nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// ***** To initialise SHT75 sensor upon power up *****&nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Function : sht_init()&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Return&nbsp; &nbsp;: none&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// ***** To measure and caluculate SHT75 temp &amp; real RH *****&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Function : sht_rd (temp, truehumid)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Return&nbsp; &nbsp;: temperature &amp; true humidity in float 
+values&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; //
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+///////////////////////////////////////////////////////////////////////////////
+<br>
+
+<br>
+#define sht_data_pin&nbsp; &nbsp;PIN_A1 (I use A1 as data input)
+<br>
+#define sht_clk_pin&nbsp; &nbsp; PIN_C4
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+//***** Function to alert SHT75 *****
+<br>
+
+<br>
+void comstart (void)
+<br>
+{
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; //data high
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_data_pin, 0); //data low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;delay_us(2);
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; //data high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to write data to SHT75 *****
+<br>
+
+<br>
+int1 comwrite (int8 iobyte)
+<br>
+{
+<br>
+&nbsp;int8 i, mask = 0x80;
+<br>
+&nbsp;int1 ack;
+<br>
+
+<br>
+&nbsp;//Shift out command
+<br>
+&nbsp;delay_us(4);
+<br>
+&nbsp;for(i=0; i&lt;8&gt; 0) output_float(sht_data_pin);&nbsp; //data high if MSB high
+<br>
+&nbsp; &nbsp;else output_bit(sht_data_pin, 0);&nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //data low if MSB low
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 1);&nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk 
+high
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; &nbsp;mask = mask &gt;&gt; 1;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; //shift to next bit
+<br>
+&nbsp; }
+<br>
+
+<br>
+&nbsp;//Shift in ack
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;ack = input(sht_data_pin);&nbsp; &nbsp;//get ack bit
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;return(ack);
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to read data from SHT75 *****
+<br>
+
+<br>
+int16 comread (void)
+<br>
+{
+<br>
+&nbsp;int8 i;
+<br>
+&nbsp;int16 iobyte = 0;
+<br>
+&nbsp;const int16 mask0 = 0x0000;
+<br>
+&nbsp;const int16 mask1 = 0x0001;
+<br>
+
+<br>
+&nbsp;//shift in MSB data
+<br>
+&nbsp;for(i=0; i&lt;8; i++)
+<br>
+&nbsp; {
+<br>
+&nbsp; &nbsp;iobyte = iobyte &lt;&lt; 1;
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 1);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk high
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; &nbsp;if (input(sht_data_pin)) iobyte |= mask1;&nbsp; //shift in data bit
+<br>
+&nbsp; &nbsp;else iobyte |= mask0;
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 0);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk low
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; }
+<br>
+
+<br>
+&nbsp;//send ack 0 bit
+<br>
+&nbsp;output_bit(sht_data_pin, 0); //data low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(2);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; //data high
+<br>
+
+<br>
+&nbsp;//shift in LSB data
+<br>
+&nbsp;for(i=0; i&lt;8; i++)
+<br>
+&nbsp; {
+<br>
+&nbsp; &nbsp;iobyte = iobyte &lt;&lt; 1;
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 1);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk high
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; &nbsp;if (input(sht_data_pin)) iobyte |= mask1;&nbsp; //shift in data bit
+<br>
+&nbsp; &nbsp;else iobyte |= mask0;
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 0);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk low
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; }
+<br>
+
+<br>
+&nbsp;//send ack 1 bit
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; //data high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(2);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+
+<br>
+&nbsp;return(iobyte);
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to wait for SHT75 reading *****
+<br>
+
+<br>
+void comwait (void)
+<br>
+{
+<br>
+&nbsp;int16 sht_delay;
+<br>
+
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//data high
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//clk low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;for(sht_delay=0; sht_delay&lt;30000; sht_delay++)&nbsp; // wait for max 300ms
+<br>
+&nbsp; {
+<br>
+&nbsp; &nbsp;if (!input(sht_data_pin)) break;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //if sht_data_pin low, SHT75 ready
+<br>
+&nbsp; &nbsp;delay_us(10);
+<br>
+&nbsp; }
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to reset SHT75 communication *****
+<br>
+
+<br>
+void comreset (void)
+<br>
+{
+<br>
+&nbsp;int8 i;
+<br>
+
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; &nbsp; //data high
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; &nbsp; //clk low
+<br>
+&nbsp;delay_us(2);
+<br>
+&nbsp;for(i=0; i&lt;9; i++)
+<br>
+&nbsp; {
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 1);&nbsp; //toggle clk 9 times
+<br>
+&nbsp; &nbsp;delay_us(2);
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 0);
+<br>
+&nbsp; &nbsp;delay_us(2);
+<br>
+&nbsp;}
+<br>
+&nbsp;comstart();
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to soft reset SHT75 *****
+<br>
+
+<br>
+void sht_soft_reset (void)
+<br>
+{
+<br>
+&nbsp;comreset();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//SHT75 communication reset
+<br>
+&nbsp;comwrite(0x1e);&nbsp; &nbsp; &nbsp; &nbsp;//send SHT75 reset command
+<br>
+&nbsp;delay_ms(15);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//pause 15 ms
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to measure SHT75 temperature *****
+<br>
+
+<br>
+int16 measuretemp (void)
+<br>
+{
+<br>
+&nbsp;int1 ack;
+<br>
+&nbsp;int16 iobyte;
+<br>
+
+<br>
+&nbsp;comstart();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//alert SHT75
+<br>
+&nbsp;ack = comwrite(0x03);&nbsp; &nbsp;//send measure temp command and read ack status
+<br>
+&nbsp;if(ack == 1) return;
+<br>
+&nbsp;comwait();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //wait for SHT75 measurement to complete
+<br>
+&nbsp;iobyte = comread();&nbsp; &nbsp; &nbsp;//read SHT75 temp data
+<br>
+&nbsp;return(iobyte);
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to measure SHT75 RH *****
+<br>
+
+<br>
+int16 measurehumid (void)
+<br>
+{
+<br>
+&nbsp;int1 ack;
+<br>
+&nbsp;int16 iobyte;
+<br>
+
+<br>
+&nbsp;comstart();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //alert SHT75
+<br>
+&nbsp;ack = comwrite(0x05);&nbsp; //send measure RH command and read ack status
+<br>
+&nbsp;if(ack == 1) return;
+<br>
+&nbsp;comwait();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//wait for SHT75 measurement to complete
+<br>
+&nbsp;iobyte = comread();&nbsp; &nbsp; //read SHT75 temp data
+<br>
+&nbsp;return(iobyte);
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to calculate SHT75 temp &amp; RH *****
+<br>
+
+<br>
+void calculate_data (int16 temp, int16 humid, float &amp; tc, float &amp; rhlin, float &amp; rhtrue)
+<br>
+{
+<br>
+&nbsp;float truehumid1, rh;
+<br>
+
+<br>
+&nbsp;//calculate temperature reading
+<br>
+&nbsp;tc = ((float) temp * 0.01) - 40.0;
+<br>
+
+<br>
+&nbsp;//calculate Real RH reading
+<br>
+&nbsp;rh = (float) humid;
+<br>
+
+<br>
+&nbsp;rhlin = (rh * 0.0405) - (rh * rh * 0.0000028) - 4.0;
+<br>
+
+<br>
+&nbsp;//calculate True RH reading
+<br>
+&nbsp;rhtrue = ((tc - 25.0) * (0.01 + (0.00008 * rh))) + rhlin;
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to measure &amp; calculate SHT75 temp &amp; RH *****
+<br>
+
+<br>
+void sht_rd (float &amp; temp, float &amp; truehumid)
+<br>
+{
+<br>
+&nbsp;int16 restemp, reshumid;
+<br>
+&nbsp;float realhumid;
+<br>
+&nbsp;restemp = 0; truehumid = 0;
+<br>
+
+<br>
+&nbsp;restemp = measuretemp();&nbsp; &nbsp; //measure temp
+<br>
+&nbsp;reshumid = measurehumid();&nbsp; //measure RH
+<br>
+calculate_data (restemp, reshumid, temp, realhumid, truehumid);&nbsp; //calculate temp &amp; RH
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to initialise SHT75 on power-up *****
+<br>
+
+<br>
+void sht_init (void)
+<br>
+{
+<br>
+&nbsp;comreset();&nbsp; &nbsp; //reset SHT75
+<br>
+&nbsp;delay_ms(20);&nbsp; //delay for power-up
+<br>
+}
+<br>
+</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+
+<br>
+LCDmod.C 
+<br>
+</span><table border="0" cellpadding="3" cellspacing="1" align="center" width="90%"><tbody><tr> 	  <td><span class="genmed"><b>Code:</b></span></td>	</tr>	<tr>	  <td class="code">///////////////////////////////////////////////////////////////////////////
+<br>
+////&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LCDD.C&nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; ////
+<br>
+////&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Driver
+ for common LCD modules&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp;////
+<br>
+////&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;////
+<br>
+////&nbsp; lcd_init()&nbsp; &nbsp;Must be called before any other function.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;////
+<br>
+////&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;////
+<br>
+////&nbsp; lcd_putc(c)&nbsp; Will display c on the next position of the LCD.&nbsp; &nbsp; &nbsp;////
+<br>
+////&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp;The following have special meaning:&nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp;////
+<br>
+////&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; \f&nbsp; Clear display&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ////
+<br>
+////&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; \n&nbsp; Go to start of second line&nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;////
+<br>
+////&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; \b&nbsp; Move back one position&nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;////
+<br>
+////&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;////
+<br>
+////&nbsp; lcd_gotoxy(x,y) Set write position on LCD (upper left is 1,1)&nbsp; &nbsp; ////
+<br>
+////&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;////
+<br>
+////&nbsp; lcd_getc(x,y)&nbsp; &nbsp;Returns character at position x,y on LCD&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;////
+<br>
+////&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;////
+<br>
+///////////////////////////////////////////////////////////////////////////
+<br>
+////&nbsp; &nbsp; &nbsp; &nbsp; (C) Copyright 1996,2003 Custom Computer Services&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;////
+<br>
+//// This source code may only be used by licensed users of the CCS C&nbsp; ////
+<br>
+//// compiler.&nbsp; This source code may only be distributed to other&nbsp; &nbsp; &nbsp; ////
+<br>
+//// licensed users of the CCS C compiler.&nbsp; No other use, reproduction ////
+<br>
+//// or distribution is permitted without written permission.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ////
+<br>
+//// Derivative programs created using this software in object code&nbsp; &nbsp; ////
+<br>
+//// form are not restricted in any way.&nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp;////
+<br>
+///////////////////////////////////////////////////////////////////////////
+<br>
+
+<br>
+// As defined in the following structure the pin connection is as follows:
+<br>
+//&nbsp; &nbsp; &nbsp;D0&nbsp; enable
+<br>
+//&nbsp; &nbsp; &nbsp;D1&nbsp; rs
+<br>
+//&nbsp; &nbsp; &nbsp;D2&nbsp; rw
+<br>
+//&nbsp; &nbsp; &nbsp;D4&nbsp; D4
+<br>
+//&nbsp; &nbsp; &nbsp;D5&nbsp; D5
+<br>
+//&nbsp; &nbsp; &nbsp;D6&nbsp; D6
+<br>
+//&nbsp; &nbsp; &nbsp;D7&nbsp; D7
+<br>
+//
+<br>
+//&nbsp; &nbsp;LCD pins D0-D3 are not used and PIC D3 is not used.
+<br>
+
+<br>
+// Un-comment the following define to use port B
+<br>
+// #define use_portb_lcd TRUE
+<br>
+
+<br>
+
+<br>
+struct lcd_pin_map {&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// This structure is overlayed
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;BOOLEAN enable;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// on to an I/O port to gain
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;BOOLEAN rs;&nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// access to the LCD pins.
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;BOOLEAN rw;&nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// The bits are allocated from
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;BOOLEAN unused;&nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp;// low order up.&nbsp; ENABLE will
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;int&nbsp; &nbsp; &nbsp;data : 4;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// be pin B0.
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; } lcd;
+<br>
+
+<br>
+
+<br>
+#if defined(__PCH__)
+<br>
+#if defined use_portb_lcd
+<br>
+&nbsp; &nbsp;#byte lcd = 0xF81&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp;// This puts the entire structure
+<br>
+#else
+<br>
+&nbsp; &nbsp;#byte lcd = 0xF83&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp;// This puts the entire structure
+<br>
+#endif
+<br>
+#else
+<br>
+#if defined use_portb_lcd
+<br>
+&nbsp; &nbsp;#byte lcd = 6&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // on to port B (at address 6)
+<br>
+#else
+<br>
+&nbsp; &nbsp;#byte lcd = 8&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// on to port D (at address 8)
+<br>
+#endif
+<br>
+#endif
+<br>
+
+<br>
+#if defined use_portb_lcd
+<br>
+&nbsp; &nbsp;#define set_tris_lcd(x) set_tris_b(x)
+<br>
+#else
+<br>
+&nbsp; &nbsp;#define set_tris_lcd(x) set_tris_d(x)
+<br>
+#endif
+<br>
+
+<br>
+
+<br>
+#define lcd_type 2&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// 0=5x7, 1=5x10, 2=2 lines
+<br>
+#define lcd_line_two 0x40&nbsp; &nbsp; // LCD RAM address for the second line
+<br>
+
+<br>
+
+<br>
+BYTE const LCD_INIT_STRING[4] = {0x20 | (lcd_type &lt;&lt; 2), 0xc, 1, 6};
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// These bytes need to be sent to the 
+LCD
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// to start it up.
+<br>
+
+<br>
+
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// The following are used for setting
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// the I/O port direction register.
+<br>
+
+<br>
+struct lcd_pin_map const LCD_WRITE = {0,0,0,0,0}; // For write mode all pins are out
+<br>
+struct lcd_pin_map const LCD_READ = {0,0,0,0,15}; // For read mode data pins are in
+<br>
+
+<br>
+
+<br>
+
+<br>
+BYTE lcd_read_byte() {
+<br>
+&nbsp; &nbsp; &nbsp; BYTE low,high;
+<br>
+&nbsp; &nbsp; &nbsp; set_tris_lcd(LCD_READ);
+<br>
+&nbsp; &nbsp; &nbsp; lcd.rw = 1;
+<br>
+&nbsp; &nbsp; &nbsp; delay_cycles(1);
+<br>
+&nbsp; &nbsp; &nbsp; lcd.enable = 1;
+<br>
+&nbsp; &nbsp; &nbsp; delay_cycles(1);
+<br>
+&nbsp; &nbsp; &nbsp; high = lcd.data;
+<br>
+&nbsp; &nbsp; &nbsp; lcd.enable = 0;
+<br>
+&nbsp; &nbsp; &nbsp; delay_cycles(1);
+<br>
+&nbsp; &nbsp; &nbsp; lcd.enable = 1;
+<br>
+&nbsp; &nbsp; &nbsp; delay_us(1);
+<br>
+&nbsp; &nbsp; &nbsp; low = lcd.data;
+<br>
+&nbsp; &nbsp; &nbsp; lcd.enable = 0;
+<br>
+&nbsp; &nbsp; &nbsp; set_tris_lcd(LCD_WRITE);
+<br>
+&nbsp; &nbsp; &nbsp; return( (high&lt;&lt;4&gt;&gt; 4);
+<br>
+&nbsp; &nbsp; &nbsp; lcd_send_nibble(n &amp; 0xf);
+<br>
+}
+<br>
+
+<br>
+//Modified code to fit S6A0069 chip based LCD
+<br>
+void lcd_init() {
+<br>
+&nbsp; &nbsp; set_tris_lcd(LCD_WRITE);
+<br>
+&nbsp; &nbsp; lcd.rs = 0;
+<br>
+&nbsp; &nbsp; lcd.rw = 0;
+<br>
+&nbsp; &nbsp; lcd.enable = 0;
+<br>
+&nbsp; &nbsp; delay_ms(30);
+<br>
+&nbsp; &nbsp;lcd_send_nibble(0x02);
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; &nbsp; lcd_send_nibble(0x02);
+<br>
+&nbsp; &nbsp; delay_us(1);
+<br>
+&nbsp; &nbsp; lcd_send_nibble(0x0C);
+<br>
+&nbsp; &nbsp; delay_us(45);
+<br>
+&nbsp; &nbsp; lcd_send_nibble(0x00);
+<br>
+&nbsp; &nbsp; delay_us(1);
+<br>
+&nbsp; &nbsp; lcd_send_nibble(0x0F);
+<br>
+&nbsp; &nbsp; delay_us(45);
+<br>
+&nbsp; &nbsp; lcd_send_nibble(0x00);
+<br>
+&nbsp; &nbsp; delay_us(1);
+<br>
+&nbsp; &nbsp; lcd_send_nibble(0x01);
+<br>
+&nbsp; &nbsp; delay_ms(2);
+<br>
+&nbsp; &nbsp; lcd_send_nibble(0x00);
+<br>
+&nbsp; &nbsp; delay_us(1);
+<br>
+&nbsp; &nbsp; lcd_send_nibble(0x06);
+<br>
+&nbsp; &nbsp; delay_ms(2);
+<br>
+
+<br>
+}
+<br>
+
+<br>
+//Orignal LCD format
+<br>
+/*
+<br>
+void lcd_init() {
+<br>
+&nbsp; &nbsp; BYTE i;
+<br>
+&nbsp; &nbsp; set_tris_lcd(LCD_WRITE);
+<br>
+&nbsp; &nbsp; lcd.rs = 0;
+<br>
+&nbsp; &nbsp; lcd.rw = 0;
+<br>
+&nbsp; &nbsp; lcd.enable = 0;
+<br>
+&nbsp; &nbsp; delay_ms(15);
+<br>
+&nbsp; &nbsp; for(i=1;i&lt;=3;++i) {
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;lcd_send_nibble(3);
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;delay_ms(5);
+<br>
+&nbsp; &nbsp; }
+<br>
+&nbsp; &nbsp; lcd_send_nibble(2);
+<br>
+&nbsp; &nbsp; for(i=0;i&lt;=3;++i)
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp;lcd_send_byte(0,LCD_INIT_STRING[i]);
+<br>
+}
+<br>
+
+<br>
+*/
+<br>
+void lcd_gotoxy( BYTE x, BYTE y) {
+<br>
+&nbsp; &nbsp;BYTE address;
+<br>
+
+<br>
+&nbsp; &nbsp;if(y!=1)
+<br>
+&nbsp; &nbsp; &nbsp;address=lcd_line_two;
+<br>
+&nbsp; &nbsp;else
+<br>
+&nbsp; &nbsp; &nbsp;address=0;
+<br>
+&nbsp; &nbsp;address+=x-1;
+<br>
+&nbsp; &nbsp;lcd_send_byte(0,0x80|address);
+<br>
+}
+<br>
+
+<br>
+void lcd_putc( char c) {
+<br>
+&nbsp; &nbsp;switch (c) {
+<br>
+&nbsp; &nbsp; &nbsp;case '\f'&nbsp; &nbsp;: lcd_send_byte(0,1);
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;delay_ms(2);
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp;break;
+<br>
+&nbsp; &nbsp; &nbsp;case '\n'&nbsp; &nbsp;: lcd_gotoxy(1,2);&nbsp; &nbsp; &nbsp; &nbsp; break;
+<br>
+&nbsp; &nbsp; &nbsp;case '\b'&nbsp; &nbsp;: lcd_send_byte(0,0x10);&nbsp; break;
+<br>
+&nbsp; &nbsp; &nbsp;default&nbsp; &nbsp; &nbsp;: lcd_send_byte(1,c);&nbsp; &nbsp; &nbsp;break;
+<br>
+&nbsp; &nbsp;}
+<br>
+}
+<br>
+
+<br>
+char lcd_getc( BYTE x, BYTE y) {
+<br>
+&nbsp; &nbsp;char value;
+<br>
+
+<br>
+&nbsp; &nbsp; lcd_gotoxy(x,y);
+<br>
+&nbsp; &nbsp; while ( bit_test(lcd_read_byte(),7) ); // wait until busy flag is low
+<br>
+&nbsp; &nbsp; lcd.rs=1;
+<br>
+&nbsp; &nbsp; value = lcd_read_byte();
+<br>
+&nbsp; &nbsp; lcd.rs=0;
+<br>
+&nbsp; &nbsp; return(value);
+<br>
+}
+<br>
+</td>	</tr></tbody></table><span class="postbody"></span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row2" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row2" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=3438"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=3438"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" align="left" valign="top" width="150">
+			<span class="name"><a name="82145"></a><b>STIX</b></span><br><span class="postdetails"><br><br><br>Joined: 17 Jun 2006<br>Posts: 12<br></span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=4436"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=4436"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row1" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: --></span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=82145#82145"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Wed Jun 13, 2007 2:38 pm<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=82145"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">I used the same code on a <b style="color:#FFA34F">SHT11</b>, however I'm not getting any meaningful readout.
+<br>
+
+<br>
+The temperature is showing -39.9C all the time.
+<br>
+
+<br>
+The only thing that I've changed are the:
+<br>
+
+<br>
+</span><table border="0" cellpadding="3" cellspacing="1" align="center" width="90%"><tbody><tr> 	  <td><span class="genmed"><b>Code:</b></span></td>	</tr>	<tr>	  <td class="code">#define sht_data_pin&nbsp; &nbsp;PIN_D0 
+<br>
+#define sht_clk_pin&nbsp; &nbsp; &nbsp;PIN_D1</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+and I'm just outputing to the hyperterminal.  Any chance I have a faulty <b style="color:#FFA34F">SHT11</b>?  or is this something else?
+<br>
+
+<br>
+Thanks</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row1" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row1" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=4436"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=4436"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" align="left" valign="top" width="150">
+			<span class="name"><a name="82223"></a><b>hansolo</b></span><br><span class="postdetails"><br><br><br>Joined: 06 Oct 2006<br>Posts: 20<br></span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=5204"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=5204"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row2" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: --></span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=82223#82223"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Thu Jun 14, 2007 5:44 pm<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=82223"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">Make sure you connect the +5V and Gnd pins correctly. 
+<br>
+
+<br>
+If you connect the power pins wrongly and you power up there goes your <b style="color:#FFA34F">SHT11</b>.
+<br>
+
+<br>
+Hansolo</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row2" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row2" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=5204"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=5204"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" align="left" valign="top" width="150">
+			<span class="name"><a name="83297"></a><b>JULIEN LAFFITTE</b></span><br><span class="postdetails"><br><br><br>Joined: 28 Mar 2007<br>Posts: 18<br></span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=6961"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=6961"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row1" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: --></span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=83297#83297"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Fri Jul 13, 2007 2:29 am<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=83297"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody"></span><table border="0" cellpadding="3" cellspacing="1" align="center" width="90%"><tbody><tr> 	  <td><span class="genmed"><b>Quote:</b></span></td>	</tr>	<tr>	  <td class="quote">I used the same code on a <b style="color:#FFA34F">SHT11</b>, however I'm not getting any meaningful readout. 
+<br>
+
+<br>
+The temperature is showing -39.9C all the time. 
+<br>
+
+<br>
+The only thing that I've changed are the: 
+<br>
+
+<br>
+Code: 
+<br>
+#define sht_data_pin   PIN_D0 
+<br>
+#define sht_clk_pin     PIN_D1 
+<br>
+
+<br>
+
+<br>
+and I'm just outputing to the hyperterminal. Any chance I have a faulty <b style="color:#FFA34F">SHT11</b>? or is this something else? 
+<br>
+
+<br>
+Thanks</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+it's the same for me and i have just change:
+<br>
+-output_bit(x,0) by a output_low(x)
+<br>
+-output_bit(x,1) by a output_high(x)
+<br>
+and now working good
+<br>
+i think it's just a problem of I/O config</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row1" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row1" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=6961"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=6961"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" align="left" valign="top" width="150">
+			<span class="name"><a name="94763"></a><b>erik006</b></span><br><span class="postdetails"><br><br><br>Joined: 05 Jan 2008<br>Posts: 10<br></span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=9115"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=9115"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row2" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: -->If you're not getting correct data</span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=94763#94763"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Sat Mar 08, 2008 1:06 pm<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=94763"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">For future reference:
+<br>
+
+<br>
+If you're not getting "proper" output, check that you have i2c resistors on the sht clock and data lines.</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row2" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row2" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=9115"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=9115"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" align="left" valign="top" width="150">
+			<span class="name"><a name="98800"></a><b>soundsk</b></span><br><span class="postdetails"><br><br><br>Joined: 10 May 2008<br>Posts: 6<br></span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=10335"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=10335"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row1" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: --></span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=98800#98800"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Sat May 10, 2008 10:43 am<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=98800"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">Hi,
+<br>
+
+<br>
+I've read this thread over and over, and still am getting:
+<br>
+
+<br>
+TEMP: -39.9 
+<br>
+RH: -4.6%
+<br>
+
+<br>
+I can't figure out what's wrong... I'm using 16F877A, and <b style="color:#FFA34F">SHT11</b> (with 10K pull up on both CLK and DATA pins).
+<br>
+
+<br>
+The code i'm using is this (pretty much the same, only changed 
+output_bit to output_high or output_low like JULIEN LAFFITTE suggested):
+<br>
+
+<br>
+MAIN:
+<br>
+</span><table border="0" cellpadding="3" cellspacing="1" align="center" width="90%"><tbody><tr> 	  <td><span class="genmed"><b>Code:</b></span></td>	</tr>	<tr>	  <td class="code">
+<br>
+#include "remote.h"
+<br>
+//#include "picram.h"
+<br>
+#include &lt;lcdts.C&gt;
+<br>
+#include&lt;SHT.c&gt;
+<br>
+
+<br>
+void main()
+<br>
+{
+<br>
+&nbsp;float restemp, truehumid;
+<br>
+&nbsp;lcd_init();
+<br>
+&nbsp;delay_ms(100);
+<br>
+&nbsp;sht_init();
+<br>
+&nbsp;delay_ms(100);
+<br>
+
+<br>
+&nbsp;while(1)
+<br>
+&nbsp;{
+<br>
+&nbsp; sht_rd (restemp, truehumid);
+<br>
+&nbsp; lcd_gotoxy(1,1);
+<br>
+&nbsp; printf(lcd_putc, "Temp : %3.1f %cC&nbsp; &nbsp;", restemp, 223);
+<br>
+&nbsp; printf(lcd_putc, "\nRH&nbsp; &nbsp;: %3.1f %%&nbsp; &nbsp;", truehumid);
+<br>
+&nbsp; delay_ms(500);&nbsp; &nbsp; &nbsp; &nbsp; //delay 500 ms between reading to prevent self heating of sensor
+<br>
+&nbsp;}
+<br>
+}</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+SHT.C
+<br>
+</span><table border="0" cellpadding="3" cellspacing="1" align="center" width="90%"><tbody><tr> 	  <td><span class="genmed"><b>Code:</b></span></td>	</tr>	<tr>	  <td class="code">///////////////////////////////////////////////////////////////////////////////
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Driver file for SHT75 Temperature &amp; Humidity Sensor&nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// ***** To initialise SHT75 sensor upon power up *****&nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Function : sht_init()&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Return&nbsp; &nbsp;: none&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// ***** To measure and caluculate SHT75 temp &amp; real RH *****&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Function : sht_rd (temp, truehumid)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+// Return&nbsp; &nbsp;: temperature &amp; true humidity in float 
+values&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; //
+<br>
+//&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//
+<br>
+///////////////////////////////////////////////////////////////////////////////
+<br>
+
+<br>
+#define sht_data_pin&nbsp; &nbsp;PIN_D3 //(I use A1 as data input)
+<br>
+#define sht_clk_pin&nbsp; &nbsp; PIN_C4
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+//***** Function to alert SHT75 *****
+<br>
+
+<br>
+void comstart (void)
+<br>
+{
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; //data high
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_data_pin, 0); //data low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;delay_us(2);
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; //data high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to write data to SHT75 *****
+<br>
+
+<br>
+int1 comwrite (int8 iobyte)
+<br>
+{
+<br>
+&nbsp;int8 i, mask = 0x80;
+<br>
+&nbsp;int1 ack;
+<br>
+
+<br>
+&nbsp;//Shift out command
+<br>
+&nbsp;delay_us(4);
+<br>
+&nbsp;for(i=0; i&lt;8&gt; 0) output_float(sht_data_pin);&nbsp; //data high if MSB high
+<br>
+&nbsp; &nbsp;else output_bit(sht_data_pin, 0);&nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //data low if MSB low
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 1);&nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk 
+high
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; &nbsp;mask = mask &gt;&gt; 1;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+&nbsp; &nbsp; &nbsp; //shift to next bit
+<br>
+&nbsp; }
+<br>
+
+<br>
+&nbsp;//Shift in ack
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;ack = input(sht_data_pin);&nbsp; &nbsp;//get ack bit
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;return(ack);
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to read data from SHT75 *****
+<br>
+
+<br>
+int16 comread (void)
+<br>
+{
+<br>
+&nbsp;int8 i;
+<br>
+&nbsp;int16 iobyte = 0;
+<br>
+&nbsp;const int16 mask0 = 0x0000;
+<br>
+&nbsp;const int16 mask1 = 0x0001;
+<br>
+
+<br>
+&nbsp;//shift in MSB data
+<br>
+&nbsp;for(i=0; i&lt;8; i++)
+<br>
+&nbsp; {
+<br>
+&nbsp; &nbsp;iobyte = iobyte &lt;&lt; 1;
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 1);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk high
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; &nbsp;if (input(sht_data_pin)) iobyte |= mask1;&nbsp; //shift in data bit
+<br>
+&nbsp; &nbsp;else iobyte |= mask0;
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 0);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk low
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; }
+<br>
+
+<br>
+&nbsp;//send ack 0 bit
+<br>
+&nbsp;output_bit(sht_data_pin, 0); //data low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(2);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; //data high
+<br>
+
+<br>
+&nbsp;//shift in LSB data
+<br>
+&nbsp;for(i=0; i&lt;8; i++)
+<br>
+&nbsp; {
+<br>
+&nbsp; &nbsp;iobyte = iobyte &lt;&lt; 1;
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 1);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk high
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; &nbsp;if (input(sht_data_pin)) iobyte |= mask1;&nbsp; //shift in data bit
+<br>
+&nbsp; &nbsp;else iobyte |= mask0;
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 0);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //clk low
+<br>
+&nbsp; &nbsp;delay_us(1);
+<br>
+&nbsp; }
+<br>
+
+<br>
+&nbsp;//send ack 1 bit
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; //data high
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;output_bit(sht_clk_pin, 1);&nbsp; //clk high
+<br>
+&nbsp;delay_us(2);
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; //clk low
+<br>
+
+<br>
+&nbsp;return(iobyte);
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to wait for SHT75 reading *****
+<br>
+
+<br>
+void comwait (void)
+<br>
+{
+<br>
+&nbsp;int16 sht_delay;
+<br>
+
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//data high
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//clk low
+<br>
+&nbsp;delay_us(1);
+<br>
+&nbsp;for(sht_delay=0; sht_delay&lt;30000; sht_delay++)&nbsp; // wait for max 300ms
+<br>
+&nbsp; {
+<br>
+&nbsp; &nbsp;if (!input(sht_data_pin)) break;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //if sht_data_pin low, SHT75 ready
+<br>
+&nbsp; &nbsp;delay_us(10);
+<br>
+&nbsp; }
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to reset SHT75 communication *****
+<br>
+
+<br>
+void comreset (void)
+<br>
+{
+<br>
+&nbsp;int8 i;
+<br>
+
+<br>
+&nbsp;output_float(sht_data_pin);&nbsp; &nbsp; //data high
+<br>
+&nbsp;output_bit(sht_clk_pin, 0);&nbsp; &nbsp; //clk low
+<br>
+&nbsp;delay_us(2);
+<br>
+&nbsp;for(i=0; i&lt;9; i++)
+<br>
+&nbsp; {
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 1);&nbsp; //toggle clk 9 times
+<br>
+&nbsp; &nbsp;delay_us(2);
+<br>
+&nbsp; &nbsp;output_bit(sht_clk_pin, 0);
+<br>
+&nbsp; &nbsp;delay_us(2);
+<br>
+&nbsp;}
+<br>
+&nbsp;comstart();
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to soft reset SHT75 *****
+<br>
+
+<br>
+void sht_soft_reset (void)
+<br>
+{
+<br>
+&nbsp;comreset();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//SHT75 communication reset
+<br>
+&nbsp;comwrite(0x1e);&nbsp; &nbsp; &nbsp; &nbsp;//send SHT75 reset command
+<br>
+&nbsp;delay_ms(15);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//pause 15 ms
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to measure SHT75 temperature *****
+<br>
+
+<br>
+int16 measuretemp (void)
+<br>
+{
+<br>
+&nbsp;int1 ack;
+<br>
+&nbsp;int16 iobyte;
+<br>
+
+<br>
+&nbsp;comstart();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//alert SHT75
+<br>
+&nbsp;ack = comwrite(0x03);&nbsp; &nbsp;//send measure temp command and read ack status
+<br>
+&nbsp;if(ack == 1) return;
+<br>
+&nbsp;comwait();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //wait for SHT75 measurement to complete
+<br>
+&nbsp;iobyte = comread();&nbsp; &nbsp; &nbsp;//read SHT75 temp data
+<br>
+&nbsp;return(iobyte);
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to measure SHT75 RH *****
+<br>
+
+<br>
+int16 measurehumid (void)
+<br>
+{
+<br>
+&nbsp;int1 ack;
+<br>
+&nbsp;int16 iobyte;
+<br>
+
+<br>
+&nbsp;comstart();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //alert SHT75
+<br>
+&nbsp;ack = comwrite(0x05);&nbsp; //send measure RH command and read ack status
+<br>
+&nbsp;if(ack == 1) return;
+<br>
+&nbsp;comwait();&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//wait for SHT75 measurement to complete
+<br>
+&nbsp;iobyte = comread();&nbsp; &nbsp; //read SHT75 temp data
+<br>
+&nbsp;return(iobyte);
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to calculate SHT75 temp &amp; RH *****
+<br>
+
+<br>
+void calculate_data (int16 temp, int16 humid, float &amp; tc, float &amp; rhlin, float &amp; rhtrue)
+<br>
+{
+<br>
+&nbsp;float truehumid1, rh;
+<br>
+
+<br>
+&nbsp;//calculate temperature reading
+<br>
+&nbsp;tc = ((float) temp * 0.01) - 40.0;
+<br>
+
+<br>
+&nbsp;//calculate Real RH reading
+<br>
+&nbsp;rh = (float) humid;
+<br>
+
+<br>
+&nbsp;rhlin = (rh * 0.0405) - (rh * rh * 0.0000028) - 4.0;
+<br>
+
+<br>
+&nbsp;//calculate True RH reading
+<br>
+&nbsp;rhtrue = ((tc - 25.0) * (0.01 + (0.00008 * rh))) + rhlin;
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to measure &amp; calculate SHT75 temp &amp; RH *****
+<br>
+
+<br>
+void sht_rd (float &amp; temp, float &amp; truehumid)
+<br>
+{
+<br>
+&nbsp;int16 restemp, reshumid;
+<br>
+&nbsp;float realhumid;
+<br>
+&nbsp;restemp = 0; truehumid = 0;
+<br>
+
+<br>
+&nbsp;restemp = measuretemp();&nbsp; &nbsp; //measure temp
+<br>
+&nbsp;reshumid = measurehumid();&nbsp; //measure RH
+<br>
+calculate_data (restemp, reshumid, temp, realhumid, truehumid);&nbsp; //calculate temp &amp; RH
+<br>
+}
+<br>
+
+<br>
+
+<br>
+//***** Function to initialise SHT75 on power-up *****
+<br>
+
+<br>
+void sht_init (void)
+<br>
+{
+<br>
+&nbsp;comreset();&nbsp; &nbsp; //reset SHT75
+<br>
+&nbsp;delay_ms(20);&nbsp; //delay for power-up
+<br>
+} </td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+One other thing, when i compile the code i get two warnings saying that 
+functions measuretemp and measurehumid are not void and do not return a 
+value measuretemp or measurehumid.
+<br>
+
+<br>
+Can someone please help me? i need to get this working...
+<br>
+
+<br>
+Thanks in advance!...</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row1" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row1" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=10335"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=10335"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" align="left" valign="top" width="150">
+			<span class="name"><a name="100100"></a><b>mkuang</b></span><br><span class="postdetails"><br><br><br>Joined: 14 Dec 2007<br>Posts: 257<br></span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=8978"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=8978"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			<a href="mailto:mkuang@hotmail.com"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_email.gif" alt="Send e-mail" title="Send e-mail" border="0"></a>
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row2" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: --></span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=100100#100100"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Fri Jun 06, 2008 3:13 pm<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=100100"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody"></span><table border="0" cellpadding="3" cellspacing="1" align="center" width="90%"><tbody><tr> 	  <td><span class="genmed"><b>soundsk wrote:</b></span></td>	</tr>	<tr>	  <td class="quote">Hi,
+<br>
+
+<br>
+I've read this thread over and over, and still am getting:
+<br>
+
+<br>
+TEMP: -39.9 
+<br>
+RH: -4.6%
+<br>
+
+<br>
+I can't figure out what's wrong... I'm using 16F877A, and <b style="color:#FFA34F">SHT11</b> (with 10K pull up on both CLK and DATA pins).
+<br>
+
+<br>
+The code i'm using is this (pretty much the same, only changed 
+output_bit to output_high or output_low like JULIEN LAFFITTE suggested):
+<br>
+
+<br>
+</td>	</tr></tbody></table><span class="postbody">
+<br>
+Hi,
+<br>
+
+<br>
+The code posted above works fine. I tested it with PIC18F2525 with the 
+version 4 comiler and it gives very accurate results without any 
+intermittent corrupt data. Many thanks to HANSOLO for posting it.
+<br>
+
+<br>
+Hardware-wise I use a 10k pullup to +5V on the data line and no resistor
+ on the clock line. The power on the sensirion side is bypassed with a 
+1.0uF ceramic capacitor.
+<br>
+
+<br>
+You can ignore the function not void warning. If you want to get rid of it put the word "void" before the function declaration.</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row2" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row2" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=8978"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=8978"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a> <a href="mailto:mkuang@hotmail.com"><img src="templates/subSilver/images/lang_english/icon_email.gif" alt="Send e-mail" title="Send e-mail" border="0" /></a>    <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" align="left" valign="top" width="150">
+			<span class="name"><a name="100287"></a><b>monkeyman</b></span><br><span class="postdetails"><br><br><br>Joined: 05 Jun 2008<br>Posts: 18<br></span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=10544"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=10544"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row1" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: --></span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=100287#100287"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Thu Jun 12, 2008 6:15 am<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=100287"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">hello
+<br>
+my sht75 working good in 3v with the same code but i use a pull down of 4.7k on clk pin and pull up on data pin</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row1" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row1" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=10544"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=10544"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row2" align="left" valign="top" width="150">
+			<span class="name"><a name="101214"></a><b>sliders_alpha</b></span><br><span class="postdetails"><br><br><br>Joined: 03 Mar 2008<br>Posts: 55<br></span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=9712"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=9712"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row2" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: --></span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=101214#101214"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Wed Jul 09, 2008 8:42 am<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=101214"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody">i've just tried your code with a 16F876A and a <b style="color:#FFA34F">SHT11</b>.
+<br>
+it's working fine, i've just got 28°C instead of 25°C i guess it's normal (tolerency).
+<br>
+i'm using a 10K pull-up on the dataline and no resistor on the clock line.<br>_________________<br>yup, i know, i don't speak english very well
+<br>
+
+<br>
+CCS V4.057</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row2" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row2" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=9712"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=9712"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr>
+		<td class="row1" align="left" valign="top" width="150">
+			<span class="name"><a name="101253"></a><b>adrian</b></span><br><span class="postdetails"><br><br><br>Joined: 08 Sep 2003<br>Posts: 92<br>Location: Glasgow, UK</span><br>
+			<p>
+			<a href="http://www.ccsinfo.com/forum/profile.php?mode=viewprofile&amp;u=41"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0"></a>
+			<a href="http://www.ccsinfo.com/forum/privmsg.php?mode=post&amp;u=41"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_pm.gif" alt="Send private message" title="Send private message" border="0"></a>
+			
+			
+			
+			
+			
+			
+			<br><br>
+		</p></td>
+		<td class="row1" height="28" valign="top" width="100%"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody><tr>
+				<td colspan="2" width="100%"><span class="postdetailsbold"><!--Post subject: --></span></td>
+			</tr>
+			<tr>
+				<td width="100%"><a href="http://www.ccsinfo.com/forum/viewtopic.php?p=101253#101253"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_minipost.gif" alt="Post" title="Post" border="0" height="9" width="12"></a><span class="postdetails">Posted: Thu Jul 10, 2008 5:32 am<span class="gen">&nbsp;</span>&nbsp; &nbsp;</span></td>
+				<td nowrap="nowrap" valign="top"><a href="http://www.ccsinfo.com/forum/posting.php?mode=quote&amp;p=101253"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/icon_quote.gif" alt="Reply with quote" title="Reply with quote" border="0"></a>   </td>
+			</tr>
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span class="postbody"></span><table border="0" cellpadding="3" cellspacing="1" align="center" width="90%"><tbody><tr> 	  <td><span class="genmed"><b>sliders_alpha wrote:</b></span></td>	</tr>	<tr>	  <td class="quote">i've just tried your code with a 16F876A and a <b style="color:#FFA34F">SHT11</b>.
+<br>
+it's working fine, i've just got 28°C instead of 25°C i guess it's normal (tolerency).</td>	</tr></tbody></table><span class="postbody">
+<br>
+
+<br>
+I have been bitten by this one myself recently. I assume from your 
+readings that you are powering the device from 5V? Have another look at 
+the data sheet - especially footnote 3 in Table 1! The current issue of 
+the data sheet is v3.01.</span><span class="gensmall"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr><!--
+	<tr>
+		<td class="row1" width="150" align="left" valign="middle"><span class="nav"><a href="#top" class="nav">Back to top</a></span></td>
+		<td class="row1" width="100%" height="28" valign="bottom" nowrap="nowrap"><table cellspacing="0" cellpadding="0" border="0" height="18" width="18">
+			<tr>
+				<td valign="middle" nowrap="nowrap"><a href="profile.php?mode=viewprofile&amp;u=41"><img src="templates/subSilver/images/lang_english/icon_profile.gif" alt="View user's profile" title="View user's profile" border="0" /></a> <a href="privmsg.php?mode=post&amp;u=41"><img src="templates/subSilver/images/lang_english/icon_pm.gif" alt="Send private message" title="Send private message" border="0" /></a>     <script language="JavaScript" type="text/javascript">--><!--
+
+	if ( navigator.userAgent.toLowerCase().indexOf('mozilla') != -1 && navigator.userAgent.indexOf('5.') == -1 && navigator.userAgent.indexOf('6.') == -1 )
+		document.write(' ');
+	else
+		document.write('</td><td>&nbsp;</td><td valign="top" nowrap="nowrap"><div style="position:relative"><div style="position:absolute"></div><div style="position:absolute;left:3px;top:-1px"></div></div>');
+
+				//--><!--</script><noscript></noscript></td>
+			</tr>
+		</table></td>
+	</tr>
+	-->
+	<tr>
+		<td class="spaceRow" colspan="2" height="1"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/spacer.gif" alt="" height="1" width="1"></td>
+	</tr>
+	<tr align="center">
+		<td class="catBottom" colspan="2" height="28"><table border="0" cellpadding="0" cellspacing="0">
+			<tbody><tr><form method="post" action="viewtopic.php?t=28564&amp;start=0"></form>
+				<td align="center"><span class="gensmall">Display posts from previous: <select name="postdays"><option value="0" selected="selected">All Posts</option><option value="1">1 Day</option><option value="7">7 Days</option><option value="14">2 Weeks</option><option value="30">1 Month</option><option value="90">3 Months</option><option value="180">6 Months</option><option value="364">1 Year</option></select>&nbsp;<select name="postorder"><option value="asc" selected="selected">Oldest First</option><option value="desc">Newest First</option></select>&nbsp;<input value="Go" class="liteoption" name="submit" type="submit"></span></td>
+			</tr>
+		</tbody></table></td>
+	</tr>
+</tbody></table>
+
+<table border="0" cellpadding="2" cellspacing="2" align="center" width="100%">
+  <tbody><tr>
+	<td align="left" nowrap="nowrap" valign="middle"><span class="nav"><a href="http://www.ccsinfo.com/forum/posting.php?mode=newtopic&amp;f=2"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/post.gif" alt="Post new topic" border="0" align="middle"></a>&nbsp;&nbsp;&nbsp;<a href="http://www.ccsinfo.com/forum/posting.php?mode=reply&amp;t=28564"><img src="CCS%20::%20View%20topic%20-%20Driver%20For%20SHT75%20Temperature%20&amp;%20Humidity%20Sensor_files/reply.gif" alt="Reply to topic" border="0" align="middle"></a></span></td>
+	<td align="left" valign="middle" width="100%"><span class="nav">&nbsp;&nbsp;&nbsp;<a href="http://www.ccsinfo.com/forum/index.php" class="nav">CCS Forum Index</a>
+	  -&gt; <a href="http://www.ccsinfo.com/forum/viewforum.php?f=2" class="nav">Code Library</a></span></td>
+	<td align="right" nowrap="nowrap" valign="top"><span class="gensmall">All times are GMT - 6 Hours</span><br><span class="nav">Goto page <b>1</b>, <a href="http://www.ccsinfo.com/forum/viewtopic.php?t=28564&amp;postdays=0&amp;postorder=asc&amp;highlight=sht11&amp;start=15">2</a>, <a href="http://www.ccsinfo.com/forum/viewtopic.php?t=28564&amp;postdays=0&amp;postorder=asc&amp;highlight=sht11&amp;start=30">3</a>&nbsp;&nbsp;<a href="http://www.ccsinfo.com/forum/viewtopic.php?t=28564&amp;postdays=0&amp;postorder=asc&amp;highlight=sht11&amp;start=15">Next</a></span>
+	  </td>
+  </tr>
+  <tr>
+	<td colspan="3" align="left"><span class="nav">Page <b>1</b> of <b>3</b></span></td>
+  </tr>
+</tbody></table>
+
+<table border="0" cellspacing="2" align="center" width="100%">
+  <tbody><tr>
+	<td align="left" nowrap="nowrap" valign="top" width="40%"><span class="gensmall"></span><br>
+	  &nbsp;<br>
+	  </td>
+	<td align="right" nowrap="nowrap" valign="top">
+<form method="get" name="jumpbox" action="viewforum.php" onsubmit="if(document.jumpbox.f.value == -1){return false;}"><table border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td nowrap="nowrap"><span class="gensmall">Jump to:&nbsp;<select name="f" onchange="if(this.options[this.selectedIndex].value != -1){ forms['jumpbox'].submit() }"><option value="-1">Select a forum</option><option value="-1">&nbsp;</option><option value="-1">Software</option><option value="-1">----------------</option><option value="1">General CCS C Discussion</option><option value="2" selected="selected">Code Library</option><option value="5">EZ App Lynx</option><option value="-1">&nbsp;</option><option value="-1">Hardware</option><option value="-1">----------------</option><option value="3">CCS ICD / Mach X / Load-n-Go</option></select><input name="sid" value="6216fc9612afaa9f00cd260af3ad0b6f" type="hidden">&nbsp;<input value="Go" class="liteoption" type="submit"></span></td>
+	</tr>
+</tbody></table></form>
+
+<span class="gensmall">You <b>cannot</b> post new topics in this forum<br>You <b>cannot</b> reply to topics in this forum<br>You <b>cannot</b> edit your posts in this forum<br>You <b>cannot</b> delete your posts in this forum<br>You <b>cannot</b> vote in polls in this forum<br></span></td>
+  </tr>
+</tbody></table>
+
+
+<div align="center"><span class="copyright"><br><br>
+<!--
+	We request you retain the full copyright notice below including the link to www.phpbb.com.
+	This not only gives respect to the large amount of time given freely by the developers
+	but also helps build interest, traffic and use of phpBB 2.0. If you cannot (for good
+	reason) retain the full copyright we request you at least leave in place the
+	Powered by phpBB line, with phpBB linked to www.phpbb.com. If you refuse
+	to include even this then support on our forums may be affected.
+
+	The phpBB Group : 2002
+// -->
+Powered by <a href="http://www.phpbb.com/" target="_phpbb" class="copyright">phpBB</a> © 2001, 2005 phpBB Group<br></span></div>
+		</td>
+	</tr>
+</tbody></table>
+
+
+
+
+</body></html>
